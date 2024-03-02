@@ -1,7 +1,8 @@
 import {formatTimeAgo} from "../../helpers/formatTimeAgo.js";
 import styles from './styles.module.css'
 import Image from "../Image/Image.jsx";
-const Header = ({ item }) => {
+import withSkeleton from "../../helpers/hocs/withSkeleton.jsx";
+const NewsBanner = ({ item }) => {
     return <div className={styles.banner}>
         <Image image={item?.image} />
         <h3 className={styles.title}>{item.title}</h3>
@@ -9,4 +10,6 @@ const Header = ({ item }) => {
     </div>;
 }
 
-export default Header;
+const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1)
+
+export default NewsBannerWithSkeleton;
