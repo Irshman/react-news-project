@@ -1,6 +1,6 @@
 import {formatTimeAgo} from "../../helpers/formatTimeAgo.js";
 import styles from './styles.module.css'
-import Image from "../Image/Image.jsx";
+import Image from "../../Image/Image.jsx";
 
 const NewsBanner = ({ item }) => {
     return <div className={styles.banner}>
