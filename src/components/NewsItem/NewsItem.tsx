@@ -1,7 +1,12 @@
-import {formatTimeAgo} from "../../helpers/formatTimeAgo.js";
+import {formatTimeAgo} from "../../helpers/formatTimeAgo.ts";
 import styles from './styles.module.css'
+import { INews } from "../../interfaces";
 
-const Header = ({ item }) => {
+interface Props {
+    item: INews;
+}
+
+const Header = ({ item }: Props) => {
     return <li className={styles.item}>
         <div
             className={styles.wrapper}

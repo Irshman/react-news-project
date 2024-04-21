@@ -1,13 +1,22 @@
 import styles from './styles.module.css'
-const Categories = ({ categories, setSelectedCategory, selectedCategory }) => {
+import {CategoriesType} from "../../interfaces";
+import {ForwardedRef, forwardRef} from "react";
+
+interface Props {
+    categories: CategoriesType[];
+    setSelectedCategory: (category: CategoriesType | null) => void;
+    selectedCategory: CategoriesType | null;
+}
+
+const Categories = forwardRef(({ categories, setSelectedCategory, selectedCategory }: Props, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-        <div className={styles.categories}>
+        <div ref={ref} className={styles.categories}>
             <button
                 onClick={() => setSelectedCategory(null)}
                 className={!selectedCategory ? styles.active : styles.item}>
                 All
             </button>
-            {categories.map(category => {
+            {categories.map((category) => {
                 return (
                     <button
                         onClick={() => setSelectedCategory(category)}
@@ -18,6 +27,6 @@ const Categories = ({ categories, setSelectedCategory, selectedCategory }) => {
             })}
         </div>
     );
-}
+})
 
 export default Categories;

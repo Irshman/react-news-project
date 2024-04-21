@@ -1,7 +1,7 @@
-import { formatDate } from "../../helpers/formatDate.js";
+import { formatDate } from "../../helpers/formatDate.ts";
 import styles from './styles.module.css'
 import {themeIcons} from "../../assets";
-import {useTheme} from "../../context/ThemeContext.tsx";
+import {useTheme} from "../../context/ThemeContext";
 
 const Header = () => {
     const { isDark, toggleTheme } = useTheme();
@@ -12,7 +12,7 @@ const Header = () => {
             <p className={styles.date}>{formatDate(new Date())}</p>
         </div>
 
-        <img src={isDark ? themeIcons.light : themeIcons.dark} width={30} alt='icon' onClick={toggleTheme} />
+        <img className={styles.icon} src={isDark ? themeIcons.light : themeIcons.dark} width={30} alt='icon' onClick={toggleTheme} />
     </header>;
 }
 

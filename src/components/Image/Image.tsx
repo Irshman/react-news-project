@@ -1,5 +1,10 @@
 import styles from './styles.module.css'
-const Header = ({ image }) => {
+
+interface Props {
+    image: string;
+}
+
+const Header = ({ image }: Props) => {
     return <div className={styles.wrapper}>
         {image ? <img src={image} alt='news' className={styles.image} /> : null}
     </div>;
