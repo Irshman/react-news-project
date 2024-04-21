@@ -1,9 +1,9 @@
-export const formatDate = (date: Date) => {
+export const formatDate = (data: Date) => {
     const options: Intl.DateTimeFormatOptions = {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     };
-    return date.toLocaleDateString('en-US', options);
+    return data.toLocaleDateString('en-US', options);
 }

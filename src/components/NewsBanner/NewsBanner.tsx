@@ -6,6 +6,7 @@ import {INews} from "../../interfaces";
 interface Props {
     item: INews;
 }
+
 const NewsBanner = ({ item }: Props) => {
     return <div className={styles.banner}>
         <Image image={item?.image} />

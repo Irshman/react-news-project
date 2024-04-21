@@ -26,11 +26,11 @@ export const getNews = async (params?: ParamsType): Promise<NewsApiResponse> => 
         return response.data
     } catch (error) {
         console.log(error)
-        return { news: [], page: 1, status: "error"};
+        return { news: [], page: 1, status: "error" };
     }
 }
 
-export  const getLatestNews = async (): Promise<NewsApiResponse> => {
+export const getLatestNews = async (): Promise<NewsApiResponse> => {
     try {
         const response = await axios.get<NewsApiResponse>(`${BASE_URL}latest-news`, {
             params: {
@@ -40,7 +40,7 @@ export  const getLatestNews = async (): Promise<NewsApiResponse> => {
         return response.data
     } catch (error) {
         console.log(error)
-        return { news: [], page: 1, status: "error"};
+        return {news: [], page: 1, status: "error"};
     }
 }
 

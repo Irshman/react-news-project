@@ -1,10 +1,11 @@
+// @ts-ignore
 import styles from './styles.module.css'
 import NewsItem from "../NewsItem/NewsItem.tsx";
 import withSkeleton from "../../helpers/hocs/withSkeleton.tsx";
 import {INews} from "../../interfaces";
 
 interface Props {
-    news?: INews[];
+    news?: INews[]
 }
 
 const NewsList = ({ news }: Props) => {

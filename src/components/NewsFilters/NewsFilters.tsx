@@ -24,7 +24,6 @@ const NewsFilters = ({ filters, changeFilter }: Props) => {
             </Slider>) : null}
 
         <Search keywords={filters.keywords} setKeywords={(keywords) => changeFilter('keywords', keywords)} />
-
     </div>;
 }
 

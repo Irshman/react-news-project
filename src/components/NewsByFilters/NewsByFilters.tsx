@@ -1,14 +1,13 @@
 import styles from './styles.module.css'
 import {PAGE_SIZE, TOTAL_PAGES} from "../../constants/constants.ts";
-import NewsList from "../NewsList/NewsList.tsx";
 import NewsFilters from "../NewsFilters/NewsFilters.tsx";
 import PaginationWrapper from "../PaginationWrapper/PaginationWrapper.tsx";
-import {useFilters} from "../../helpers/hooks/useFilters.ts";
 import {useDebounce} from "../../helpers/hooks/useDebounce.ts";
 import {useFetch} from "../../helpers/hooks/useFetch.ts";
-import {NewsApiResponse, ParamsType} from "../../interfaces";
 import {getNews} from "../../api/apiNews.ts";
-
+import {NewsApiResponse, ParamsType} from "../../interfaces";
+import {useFilters} from "../../helpers/hooks/useFilters.ts";
+import NewsList from "../NewsList/NewsList.tsx";
 const NewsByFilters = () => {
     const {filters, changeFilter} = useFilters({
         page_number: 1,
@@ -41,7 +40,7 @@ const NewsByFilters = () => {
     }
 
     return <section className={styles.section}>
-        <NewsFilters filters={filters} changeFilter={changeFilter}/>
+        <NewsFilters filters={filters} changeFilter={changeFilter} />
 
         <PaginationWrapper
             top
@@ -52,7 +51,7 @@ const NewsByFilters = () => {
             totalPages={TOTAL_PAGES}
             currentPage={filters.page_number}
         >
-            <NewsList isLoading={isLoading} news={data?.news}/>
+            <NewsList isLoading={isLoading} news={data?.news} />
         </PaginationWrapper>
     </section>;
 }
