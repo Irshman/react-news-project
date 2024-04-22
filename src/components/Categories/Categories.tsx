@@ -1,6 +1,6 @@
-import {ForwardedRef, forwardRef} from "react";
 import styles from './styles.module.css'
 import {CategoriesType} from "../../interfaces";
+import {ForwardedRef, forwardRef} from "react";
 
 interface Props {
     categories: CategoriesType[];
@@ -16,7 +16,7 @@ const Categories = forwardRef(({ categories, setSelectedCategory, selectedCatego
                 className={!selectedCategory ? styles.active : styles.item}>
                 All
             </button>
-            {categories.map(category => {
+            {categories.map((category) => {
                 return (
                     <button
                         onClick={() => setSelectedCategory(category)}

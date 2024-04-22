@@ -1,11 +1,13 @@
+// @ts-ignore
 import styles from './styles.module.css';
 import {DirectionType, SkeletonType} from "../../interfaces";
 
 interface Props {
     type?: SkeletonType;
     count?: number;
-    direction?: DirectionType;
+    direction?: DirectionType
 }
+
 const Skeleton = ({count = 1, type = 'banner', direction = 'column'}: Props) => {
     return (
         <>
