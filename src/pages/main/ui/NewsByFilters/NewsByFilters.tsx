@@ -1,15 +1,12 @@
 import styles from './styles.module.css'
 import {useDebounce} from "@/shared/hooks/useDebounce.ts";
 import {useGetNewsQuery} from "@/entities/news/api/newsApi.ts";
-import {TOTAL_PAGES} from "@/shared/constants/constants.ts";
-import {setFilters} from "@/entities/news/model/newsSlice.ts";
-import NewsFilters from "@/pages/main/ui/NewsFilters/NewsFilters.tsx";
-import Pagination from "@/features/pagination/ui/Pagination/Pagination.tsx";
-import NewsList from "@/widgets/news/ui/NewsList/NewsList.tsx";
-import {useAppDispatch, useAppSelector} from "@/app/appStore.ts";
+import NewsFilters from "@/widgets/news/ui/NewsFilters/NewsFilters.tsx";
+import {useAppSelector} from "@/app/appStore.ts";
+import {useGetCategoriesQuery} from "@/entities/category/api/categoriesApi.ts";
+import NewsListWithPagination from "@/pages/main/ui/NewsListWithPagination/NewsListWithPagination.tsx";
 
 const NewsByFilters = () => {
-    const dispatch = useAppDispatch()
     const filters = useAppSelector(state => state.news.filters)
     const news = useAppSelector(state => state.news.news)
 
@@ -20,36 +17,12 @@ const NewsByFilters = () => {
         keywords: debouncedKeywords
     })
 
-    const handleNextPage = () => {
-        if (filters.page_number < TOTAL_PAGES) {
-            dispatch(setFilters({ key: 'page_number', value: filters.page_number + 1 }))
-        }
-    }
-
-    const handlePreviousPage = () => {
-        if (filters.page_number > 1) {
-            dispatch(setFilters({ key: 'page_number', value: filters.page_number - 1 }))
-        }
-    }
-
-    const handlePageClick = (pageNumber: number) => {
-        dispatch(setFilters({ key: 'page_number', value: pageNumber }))
-    }
+    const { data } = useGetCategoriesQuery(null)
 
     return <section className={styles.section}>
-        <NewsFilters filters={filters} />
+        <NewsFilters filters={filters} categories={data?.categories || []} />
 
-        <Pagination
-            top
-            bottom
-            handleNextPage={handleNextPage}
-            handlePreviousPage={handlePreviousPage}
-            handlePageClick={handlePageClick}
-            totalPages={TOTAL_PAGES}
-            currentPage={filters.page_number}
-        >
-            <NewsList isLoading={isLoading} news={news} />
-        </Pagination>
+        <NewsListWithPagination isLoading={isLoading} news={news} filters={filters} />
     </section>;
 }
 
