@@ -4,14 +4,15 @@ import {PAGE_SIZE} from "@/shared/constants/constants.ts";
 import {IFilters} from "@/shared/interfaces";
 import {INews} from "..";
 
-
 interface State {
     news: INews[];
-    filters: IFilters
+    filters: IFilters;
+    currentNews: INews | null;
 }
 
 const initialState: State = {
     news: [],
+    currentNews: null,
     filters: {
         page_number: 1,
         page_size: PAGE_SIZE,
@@ -27,6 +28,9 @@ export const newsSlice = createSlice({
         setNews: (state, action: PayloadAction<INews[]>) => {
             state.news = action.payload
         },
+        setCurrentNews: (state, action: PayloadAction<INews | null>) => {
+            state.currentNews = action.payload
+        },
         setFilters: (state, action: PayloadAction<{key: string, value: string | null | number}>) => {
             const { key, value } = action.payload
             state.filters = {...state.filters, [key]: value}
@@ -35,5 +39,5 @@ export const newsSlice = createSlice({
 });
 
 
-export const { setNews, setFilters } = newsSlice.actions
+export const { setNews, setFilters, setCurrentNews } = newsSlice.actions
 export const reducer = newsSlice.reducer;
