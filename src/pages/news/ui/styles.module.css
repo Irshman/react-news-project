@@ -1,0 +1,12 @@
+.news {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .news {*/
+/*        grid-template-columns: 1fr;*/
+/*    }*/
+/*}*/
